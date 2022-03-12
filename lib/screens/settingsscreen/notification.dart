@@ -141,6 +141,9 @@ class _NotificationPageState extends State<NotificationPage> {
                   appnews = v;
                   setState(() {});
                 }),
+            const SizedBox(
+              height: 30.0,
+            ),
             SwitchListTile.adaptive(
                 activeTrackColor: widget.isdark
                     ? ScaffoldColor.ligth

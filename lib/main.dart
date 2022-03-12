@@ -3,7 +3,7 @@ import 'package:newsreader/core/constants/colorconstants.dart';
 import 'package:newsreader/routes/myroute.dart';
 import 'package:newsreader/screens/pages/home_page.dart';
 import 'package:newsreader/screens/settingsscreen/profile.dart';
-import 'package:newsreader/screens/settingsscreen/settings.dart';
+import 'package:newsreader/screens/tabbars/settings.dart';
 import 'package:newsreader/screens/settingsscreen/terms.dart';
 import 'package:newsreader/screens/signup/signup.dart';
 
@@ -17,11 +17,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
       title: 'NewsReaderApp',
-      theme: ThemeData(
-          scaffoldBackgroundColor: SettingsPage.isDarkmode?ScaffoldColor.dark:ScaffoldColor.ligth),
+      theme: ThemeData.light(),
       onGenerateRoute: MyRoute.onGenerateRoute,
       initialRoute: '/homepage',
       // home:  MyHomePage()

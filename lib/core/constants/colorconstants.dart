@@ -26,3 +26,10 @@ class SettingsPageColor {
   static Color trailingcolor = Color(0xff909090);
   static Color lightcolor = Colors.white;
 }
+
+class NewsPageColor {
+  static Color categoirescolor = Color(0xffeeeeee);
+  static Color categoirescolor2 = Colors.black;
+  static Color textcolor = Colors.white;
+  static Color textcolor2 = Colors.black;
+}

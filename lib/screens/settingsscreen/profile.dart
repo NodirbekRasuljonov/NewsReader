@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:newsreader/core/constants/colorconstants.dart';
 import 'package:newsreader/core/constants/myfonts.dart';
-import 'package:newsreader/screens/settingsscreen/settings.dart';
+import 'package:newsreader/screens/tabbars/settings.dart';
 
 class ProfilePage extends StatefulWidget {
   bool isdark;
-  ProfilePage({Key? key,required this.isdark}) : super(key: key);
+  ProfilePage({Key? key, required this.isdark}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -15,8 +15,8 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          widget.isdark ? ScaffoldColor.dark : ScaffoldColor.ligth,
+      resizeToAvoidBottomInset: false,
+      backgroundColor: widget.isdark ? ScaffoldColor.dark : ScaffoldColor.ligth,
       appBar: AppBar(
         leading: InkWell(
           child: Icon(Icons.chevron_left),
@@ -33,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text(
           'Profile',
           style: TextStyle(
-              color:widget.isdark
+              color: widget.isdark
                   ? SettingsPageColor.lightcolor
                   : SettingsPageColor.textColor),
         ),
@@ -103,7 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Text(
                             'Username',
                             style: TextStyle(
-                                color:widget.isdark
+                                color: widget.isdark
                                     ? SettingsPageColor.lightcolor
                                     : SettingsPageColor.textColor,
                                 fontWeight: FontWeight.bold,
@@ -113,14 +113,17 @@ class _ProfilePageState extends State<ProfilePage> {
                         Container(
                             margin: EdgeInsets.symmetric(horizontal: 5.0),
                             height: MediaQuery.of(context).size.height * 0.050,
-                            width: MediaQuery.of(context).size.height * 0.35,
+                            width: MediaQuery.of(context).size.height * 0.33,
                             alignment: Alignment.center,
                             child: TextFormField(
                                 cursorColor: widget.isdark
                                     ? SettingsPageColor.lightcolor
                                     : SettingsPageColor.textColor,
-                                style:
-                                    TextStyle(decoration: TextDecoration.none),
+                                style: TextStyle(
+                                    decoration: TextDecoration.none,
+                                    color: widget.isdark
+                                        ? SettingsPageColor.lightcolor
+                                        : SettingsPageColor.textColor),
                                 decoration: InputDecoration(
                                     focusedBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
@@ -180,15 +183,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         : ScaffoldColor.ligth,
                     elevation: 1.0,
                     child: ListTile(
-                      leading: Container(
-                        height: 30.0,
-                        width: 30,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage('assets/png/twitter (1).png'),
-                          ),
-                        ),
+                      leading: CircleAvatar(
+                        backgroundColor: widget.isdark
+                            ? SettingsPageColor.lightcolor
+                            : SettingsPageColor.lightcolor,
+                        radius: 12.0,
+                        backgroundImage:
+                            AssetImage('assets/png/twitter (1).png'),
                       ),
                       title: Text(
                         'Twitter',
