@@ -119,6 +119,9 @@ class _SettingsPageState extends State<SettingsPage> {
           Card(
             color: isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
             child: ListTile(
+              onTap: () {
+                Navigator.pushNamed(context, '/notification',arguments: isDarkmode);
+              },
               leading: Icon(
                 Icons.notifications_none,
                 color: isDarkmode
@@ -169,8 +172,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   value: isDarkmode,
                   onChanged: (v) {
                     isDarkmode = v;
-                    setState(() {}
-                    );
+                    setState(() {});
                   }),
             ),
           ),
