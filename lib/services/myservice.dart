@@ -5,7 +5,7 @@ import 'package:newsreader/models/newsmodel.dart';
 class AppleService {
   static Future<News> getData() async {
     Response res = await Dio().get(AppleAPI.api);
-    
+    print(res.data);
 
     return News.fromJson(res.data);
   }

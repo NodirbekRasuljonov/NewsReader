@@ -28,8 +28,9 @@ class About {
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
+        child: Container(
+          key: PageStorageKey('about'),
+          margin: EdgeInsets.symmetric(horizontal: 10.0),
           child: Text(
             """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a congue massa, nec sollicitudin sem. Ut eu dolor id orci euismod vestibulum ac sit amet ex. Quisque tristique nibh velit. Integer finibus porttitor eros, quis tempor lorem malesuada eget. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam augue nibh, laoreet ac lobortis sed, lacinia id magna. In magna ligula, dapibus hendrerit feugiat eget, pulvinar a purus. In sit amet ipsum mi. Nulla sodales dolor eu turpis sodales tempus. Duis feugiat ornare arcu vel feugiat.
 

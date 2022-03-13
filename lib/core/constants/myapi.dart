@@ -1,6 +1,7 @@
 class AppleAPI {
+
   static String api =
-      'https://newsapi.org/v2/everything?q=apple&from=2022-03-10&to=2022-03-10&sortBy=popularity';
+      'https://newsapi.org/v2/everything?q=apple&from=2022-03-12&to=2022-03-12&sortBy=popularity&apiKey=7b78521612094b3cb95adb582a5a5719';
 }
 
 class TeslaAPI {

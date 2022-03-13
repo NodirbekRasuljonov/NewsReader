@@ -4,6 +4,7 @@ import 'package:newsreader/core/constants/colorconstants.dart';
 class Terms {
   static Scaffold termspage(BuildContext context, bool isdark) {
     return Scaffold(
+      
       backgroundColor: isdark ? ScaffoldColor.dark : ScaffoldColor.ligth,
       appBar: AppBar(
         elevation: 0.0,
@@ -28,6 +29,7 @@ class Terms {
         ),
       ),
       body: SingleChildScrollView(
+        key: PageStorageKey('terms'),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Text(

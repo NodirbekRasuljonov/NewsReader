@@ -21,6 +21,7 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: PageStorageKey('notification'),
       backgroundColor: widget.isdark ? ScaffoldColor.dark : ScaffoldColor.ligth,
       appBar: AppBar(
         elevation: 0.0,

@@ -15,6 +15,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: PageStorageKey('profile'),
       resizeToAvoidBottomInset: false,
       backgroundColor: widget.isdark ? ScaffoldColor.dark : ScaffoldColor.ligth,
       appBar: AppBar(

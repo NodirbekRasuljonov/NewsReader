@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:newsreader/core/constants/colorconstants.dart';
+import 'package:newsreader/core/constants/myfonts.dart';
 import 'package:newsreader/core/constants/myradius.dart';
 import 'package:newsreader/models/newsmodel.dart';
 import 'package:newsreader/screens/tabbars/settings.dart';
@@ -56,7 +58,148 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                 ],
               )),
           Expanded(
-            child: Container(color: Colors.teal),
+            child: FutureBuilder(
+                future: AppleService.getData(),
+                builder: (context, AsyncSnapshot<News> snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return const Center(
+                      child: Text('Please check your Network'),
+                    );
+                  } else {
+                    return ListView.builder(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      itemExtent: 200.0,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {},
+                          child: Container(
+                            color: Colors.white,
+                            height: MediaQuery.of(context).size.height * 0.150,
+                            width: double.infinity,
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.180,
+                                  width: MediaQuery.of(context).size.height *
+                                      0.150,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: CachedNetworkImageProvider(
+                                              snapshot
+                                                  .data!.articles![index].media
+                                                  .toString()))),
+                                ),
+                                SizedBox(
+                                  height: 180,
+                                  width: 240,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 5.0),
+                                        alignment: Alignment.center,
+                                        height: 100,
+                                        width: double.infinity,
+                                        child: Text(
+                                          snapshot.data!.articles![index].title
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontSize: MyFonts.small,
+                                              color: HomePageColor.textcolor),
+                                        ),
+                                      ),
+                                      Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 5.0),
+                                          alignment: Alignment.centerLeft,
+                                          height: 30.0,
+                                          width: double.infinity,
+                                          child: Text(
+                                            snapshot
+                                                .data!.articles![index].author
+                                                .toString(),
+                                            style: TextStyle(
+                                                color:
+                                                    HomePageColor.textcolor2),
+                                          )),
+                                      SizedBox(
+                                        height: 30.0,
+                                        width: double.infinity,
+                                        child: Row(
+                                          children: [
+                                            InkWell(
+                                              onTap: () {},
+                                              child: const Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 5.0),
+                                                child: Text('Entertainment'),
+                                              ),
+                                            ),
+                                            CircleAvatar(
+                                              radius: 5.0,
+                                              backgroundColor:
+                                                  HomePageColor.textcolor2,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 5.0),
+                                              child: Text(
+                                                  "${snapshot.data!.articles![index].publishedDate!.minute.toString()} m ago"),
+                                            ),
+                                            const SizedBox(
+                                              width: 15.0,
+                                            ),
+                                            const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 3.0),
+                                              child: CircleAvatar(
+                                                radius: 1.0,
+                                                backgroundColor: Colors.black,
+                                              ),
+                                            ),
+                                            const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 3.0),
+                                              child: CircleAvatar(
+                                                radius: 1.0,
+                                                backgroundColor: Colors.black,
+                                              ),
+                                            ),
+                                            const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 3.0),
+                                              child: CircleAvatar(
+                                                radius: 1.0,
+                                                backgroundColor: Colors.black,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: snapshot.data!.articles!.length,
+                    );
+                  }
+                }),
           )
         ],
       ),

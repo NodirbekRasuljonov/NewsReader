@@ -45,6 +45,7 @@ class _InterestsPageState extends State<InterestsPage> {
         ),
       ),
       body: Container(
+        key: PageStorageKey('interests'),
         color: widget.isdark ? ScaffoldColor.dark : ScaffoldColor.ligth,
         child: Column(
           children: [
