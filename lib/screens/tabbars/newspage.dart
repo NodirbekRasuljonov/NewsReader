@@ -31,6 +31,7 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: PageStorageKey('home'),
       child: Column(
         children: [
           Container(

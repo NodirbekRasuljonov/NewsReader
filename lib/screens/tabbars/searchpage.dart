@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsreader/core/constants/colorconstants.dart';
 import 'package:newsreader/core/constants/myradius.dart';
 
 class SearchPage extends StatefulWidget {
@@ -11,22 +12,41 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20.0),
-            decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(MyRadius.medium)),
-            height: 50.0,
-            width: double.infinity,
-          ),
-          Expanded(
-              child: Container(
-            color: Colors.blue,
-          ))
-        ],
+    return Scaffold(
+      body: Container(
+        key: PageStorageKey('search'),
+        height: MediaQuery.of(context).size.height,
+        width: double.infinity,
+        color: Colors.yellow,
+        // child: Column(
+        //   children: [
+        //     Container(
+        //       height: 50.0,
+        //       margin: const EdgeInsets.all(5.0),
+        //       width: 360.0,
+        //       decoration: BoxDecoration(
+        //           borderRadius: BorderRadius.circular(MyRadius.medium),
+        //           color: SearchPageColor.containercolor),
+        //       // child: Row(children: [
+        //       //   Padding(
+        //       //     padding: const EdgeInsets.symmetric(horizontal: 5.0),
+        //       //     child: IconButton(
+        //       //         onPressed: () {}, icon: Icon(Icons.chevron_left)),
+        //       //   )
+        //       // ]),
+
+        //       ),
+        //     )
+        //   ],
+        // )
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text('Index:$index'),
+            );
+          },
+          itemCount: 30,
+        ),
       ),
     );
   }

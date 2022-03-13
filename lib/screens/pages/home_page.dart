@@ -19,6 +19,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   TabController? _tabController;
 
+  final PageStorageBucket _bucket = PageStorageBucket();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -32,18 +34,22 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       body: SafeArea(
           child: Container(
         color: Colors.red,
-        child: TabBarView(
-          controller: _tabController,
-          children: [
-            NewsPage(),
-            SearchPage(),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.2,
-              width: MediaQuery.of(context).size.height,
-              color: Colors.red,
-            ),
-            SettingsPage()
-          ],
+        child: PageStorage(
+          bucket: _bucket,
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              NewsPage(),
+              SearchPage(),
+              Container(
+                key: PageStorageKey('book'),
+                height: MediaQuery.of(context).size.height * 0.2,
+                width: MediaQuery.of(context).size.height,
+                color: Colors.red,
+              ),
+              SettingsPage()
+            ],
+          ),
         ),
       )),
       bottomNavigationBar: TabBar(

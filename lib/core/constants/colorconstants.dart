@@ -33,3 +33,7 @@ class NewsPageColor {
   static Color textcolor = Colors.white;
   static Color textcolor2 = Colors.black;
 }
+
+class SearchPageColor {
+  static Color containercolor = Color.fromARGB(255, 240, 231, 231);
+}

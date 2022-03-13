@@ -16,6 +16,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: PageStorageKey('settings'),
       color: MyApp.isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
       height: MediaQuery.of(context).size.height * 0.7,
       width: double.infinity,
