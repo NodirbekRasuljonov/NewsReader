@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:newsreader/core/constants/colorconstants.dart';
 import 'package:newsreader/core/constants/myfonts.dart';
+import 'package:newsreader/main.dart';
 import 'package:newsreader/screens/settingsscreen/profile.dart';
-import 'package:newsreader/screens/settingsscreen/terms.dart';
-import 'package:newsreader/screens/signup/splashscreens.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
-  static bool isDarkmode = true;
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -18,7 +16,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
+      color: MyApp.isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
       height: MediaQuery.of(context).size.height * 0.7,
       width: double.infinity,
       child: Column(
@@ -29,7 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Text(
               'Settings',
               style: TextStyle(
-                  color: isDarkmode
+                  color: MyApp.isDarkmode
                       ? SettingsPageColor.lightcolor
                       : SettingsPageColor.textColor,
                   fontSize: MyFonts.medium,
@@ -37,18 +35,18 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           Card(
-            color: isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
+            color: MyApp.isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
             child: ListTile(
               leading: Icon(
                 Icons.person_pin,
-                color: isDarkmode
+                color: MyApp.isDarkmode
                     ? SettingsPageColor.lightcolor
                     : SettingsPageColor.textColor,
               ),
               title: Text(
                 'Profile',
                 style: TextStyle(
-                    color: isDarkmode
+                    color: MyApp.isDarkmode
                         ? SettingsPageColor.lightcolor
                         : SettingsPageColor.textColor),
               ),
@@ -61,24 +59,24 @@ class _SettingsPageState extends State<SettingsPage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => ProfilePage(
-                              isdark: isDarkmode,
+                              isdark: MyApp.isDarkmode,
                             )));
               },
             ),
           ),
           Card(
-            color: isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
+            color: MyApp.isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
             child: ListTile(
               leading: Icon(
                 Icons.person,
-                color: isDarkmode
+                color: MyApp.isDarkmode
                     ? SettingsPageColor.lightcolor
                     : SettingsPageColor.textColor,
               ),
               title: Text(
                 'Account',
                 style: TextStyle(
-                  color: isDarkmode
+                  color: MyApp.isDarkmode
                       ? SettingsPageColor.lightcolor
                       : SettingsPageColor.textColor,
                 ),
@@ -90,22 +88,22 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           Card(
-            color: isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
+            color: MyApp.isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
             child: ListTile(
               onTap: () {
                 Navigator.pushNamed(context, '/interests',
-                    arguments: isDarkmode);
+                    arguments: MyApp.isDarkmode);
               },
               leading: Icon(
                 Icons.star_border,
-                color: isDarkmode
+                color: MyApp.isDarkmode
                     ? SettingsPageColor.lightcolor
                     : SettingsPageColor.textColor,
               ),
               title: Text(
                 'Interests',
                 style: TextStyle(
-                  color: isDarkmode
+                  color: MyApp.isDarkmode
                       ? SettingsPageColor.lightcolor
                       : SettingsPageColor.textColor,
                 ),
@@ -117,21 +115,22 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           Card(
-            color: isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
+            color: MyApp.isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
             child: ListTile(
               onTap: () {
-                Navigator.pushNamed(context, '/notification',arguments: isDarkmode);
+                Navigator.pushNamed(context, '/notification',
+                    arguments: MyApp.isDarkmode);
               },
               leading: Icon(
                 Icons.notifications_none,
-                color: isDarkmode
+                color: MyApp.isDarkmode
                     ? SettingsPageColor.lightcolor
                     : SettingsPageColor.textColor,
               ),
               title: Text(
                 'Notifications',
                 style: TextStyle(
-                  color: isDarkmode
+                  color: MyApp.isDarkmode
                       ? SettingsPageColor.lightcolor
                       : SettingsPageColor.textColor,
                 ),
@@ -145,53 +144,58 @@ class _SettingsPageState extends State<SettingsPage> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.0),
             child: Material(
-              color: isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
+              color:
+                  MyApp.isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
               borderRadius: BorderRadius.circular(5.0),
               elevation: 1.0,
               child: SwitchListTile.adaptive(
-                  activeTrackColor:
-                      isDarkmode ? ScaffoldColor.ligth : ScaffoldColor.dark,
-                  inactiveThumbColor:
-                      isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
-                  activeColor:
-                      isDarkmode ? ScaffoldColor.ligth : ScaffoldColor.dark,
+                  activeTrackColor: MyApp.isDarkmode
+                      ? ScaffoldColor.ligth
+                      : ScaffoldColor.dark,
+                  inactiveThumbColor: MyApp.isDarkmode
+                      ? ScaffoldColor.dark
+                      : ScaffoldColor.ligth,
+                  activeColor: MyApp.isDarkmode
+                      ? ScaffoldColor.ligth
+                      : ScaffoldColor.dark,
                   secondary: Icon(
                     Icons.wb_sunny,
-                    color: isDarkmode
+                    color: MyApp.isDarkmode
                         ? SettingsPageColor.lightcolor
                         : SettingsPageColor.textColor,
                   ),
                   title: Text(
                     'Dark Mode',
                     style: TextStyle(
-                      color: isDarkmode
+                      color: MyApp.isDarkmode
                           ? SettingsPageColor.lightcolor
                           : SettingsPageColor.textColor,
                     ),
                   ),
-                  value: isDarkmode,
+                  value: MyApp.isDarkmode,
                   onChanged: (v) {
-                    isDarkmode = v;
+                    MyApp.isDarkmode = v;
                     setState(() {});
                   }),
             ),
           ),
           Card(
-            color: isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
+            color: MyApp.isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
             child: ListTile(
               onTap: () {
-                Navigator.pushNamed(context, '/terms', arguments: isDarkmode);
+                Navigator.pushNamed(context, '/terms',
+                    arguments: MyApp.isDarkmode);
               },
               leading: Icon(
                 Icons.help_outline_sharp,
-                color: isDarkmode
+                color: MyApp.isDarkmode
                     ? SettingsPageColor.lightcolor
                     : SettingsPageColor.textColor,
               ),
               title: Text(
                 'Terms & Conditions',
                 style: TextStyle(
-                  color: isDarkmode
+                  color: MyApp.isDarkmode
                       ? SettingsPageColor.lightcolor
                       : SettingsPageColor.textColor,
                 ),
@@ -203,21 +207,22 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           Card(
-            color: isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
+            color: MyApp.isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
             child: ListTile(
               onTap: () {
-                Navigator.pushNamed(context, '/about', arguments: isDarkmode);
+                Navigator.pushNamed(context, '/about',
+                    arguments: MyApp.isDarkmode);
               },
               leading: Icon(
                 Icons.info_outlined,
-                color: isDarkmode
+                color: MyApp.isDarkmode
                     ? SettingsPageColor.lightcolor
                     : SettingsPageColor.textColor,
               ),
               title: Text(
                 'About',
                 style: TextStyle(
-                  color: isDarkmode
+                  color: MyApp.isDarkmode
                       ? SettingsPageColor.lightcolor
                       : SettingsPageColor.textColor,
                 ),
@@ -229,21 +234,21 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           Card(
-            color: isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
+            color: MyApp.isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
             child: ListTile(
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/splashscreen');
               },
               leading: Icon(
                 Icons.login,
-                color: isDarkmode
+                color: MyApp.isDarkmode
                     ? SettingsPageColor.lightcolor
                     : SettingsPageColor.textColor,
               ),
               title: Text(
                 'Log out',
                 style: TextStyle(
-                  color: isDarkmode
+                  color: MyApp.isDarkmode
                       ? SettingsPageColor.lightcolor
                       : SettingsPageColor.textColor,
                 ),

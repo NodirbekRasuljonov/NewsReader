@@ -12,6 +12,7 @@ void main(List<String> args) {
 }
 
 class MyApp extends StatelessWidget {
+  static bool isDarkmode = false;
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -19,7 +20,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'NewsReaderApp',
-      theme: ThemeData.light(),
+      theme: ThemeData(
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              backgroundColor:
+                  isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth),
+          bottomAppBarColor:
+              isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth,
+          scaffoldBackgroundColor:
+              isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth),
       onGenerateRoute: MyRoute.onGenerateRoute,
       initialRoute: '/homepage',
       // home:  MyHomePage()

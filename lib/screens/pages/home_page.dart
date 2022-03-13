@@ -5,6 +5,7 @@ import 'package:newsreader/core/constants/colorconstants.dart';
 import 'package:newsreader/core/constants/myfonts.dart';
 import 'package:newsreader/screens/tabbars/newspage.dart';
 import 'package:newsreader/models/newsmodel.dart';
+import 'package:newsreader/screens/tabbars/searchpage.dart';
 import 'package:newsreader/screens/tabbars/settings.dart';
 import 'package:newsreader/services/myservice.dart';
 
@@ -35,11 +36,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           controller: _tabController,
           children: [
             NewsPage(),
-            Container(
-              color: Colors.yellow,
-              height: MediaQuery.of(context).size.height * 0.7,
-              width: double.infinity,
-            ),
+            SearchPage(),
             Container(
               height: MediaQuery.of(context).size.height * 0.2,
               width: MediaQuery.of(context).size.height,
@@ -53,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           physics: NeverScrollableScrollPhysics(),
           indicatorColor: SettingsPageColor.trailingcolor,
           controller: _tabController,
-          tabs:const [
+          tabs: const [
             Tab(
               icon: Icon(
                 Icons.home_outlined,
