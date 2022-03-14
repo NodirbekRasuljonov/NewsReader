@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:newsreader/core/constants/myapi.dart';
-import 'package:newsreader/models/newsmodel.dart';
+import 'package:newsreader/models/applemodel.dart';
 
 class AppleService {
-  static Future<AppleModel> getData() async {
+  static Future getData() async {
     Response res = await Dio().get(AppleAPI.api);
     print(res.data);
-
     return AppleModel.fromJson(res.data);
   }
 }
@@ -38,3 +37,4 @@ class AppleService {
 //     return News.fromJson(res.data);
 //   }
 // }
+

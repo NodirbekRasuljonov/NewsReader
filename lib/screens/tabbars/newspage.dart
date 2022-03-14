@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:newsreader/core/constants/colorconstants.dart';
 import 'package:newsreader/core/constants/myfonts.dart';
 import 'package:newsreader/core/constants/myradius.dart';
-import 'package:newsreader/models/newsmodel.dart';
+import 'package:newsreader/models/applemodel.dart';
 import 'package:newsreader/services/myservice.dart';
 
 class NewsPage extends StatefulWidget {
@@ -30,10 +31,12 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
     'Bussines'
   ];
   int currentindex = 0;
+
+  Box applebox = Hive.box<AppleModel>('applebox');
   @override
   Widget build(BuildContext context) {
     return Container(
-      key: PageStorageKey('home'),
+      key: PageStorageKey('news'),
       child: Column(
         children: [
           Container(
@@ -61,10 +64,10 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
             child: FutureBuilder(
                 key: PageStorageKey('news'),
                 future: AppleService.getData(),
-                builder: (context, AsyncSnapshot<AppleModel> snapshot) {
+                builder: (context, AsyncSnapshot snapshot) {
                   if (!snapshot.hasData) {
-                    return const Center(
-                      child: CircularProgressIndicator.adaptive(),
+                    return Center(
+                      child: CircularProgressIndicator(),
                     );
                   } else if (snapshot.hasError) {
                     return const Center(

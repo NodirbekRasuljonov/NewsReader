@@ -5,7 +5,7 @@ import 'package:newsreader/core/constants/colorconstants.dart';
 import 'package:newsreader/core/constants/myfonts.dart';
 import 'package:newsreader/main.dart';
 import 'package:newsreader/screens/tabbars/newspage.dart';
-import 'package:newsreader/models/newsmodel.dart';
+import 'package:newsreader/models/applemodel.dart';
 import 'package:newsreader/screens/tabbars/searchpage.dart';
 import 'package:newsreader/screens/tabbars/settings.dart';
 import 'package:newsreader/services/myservice.dart';

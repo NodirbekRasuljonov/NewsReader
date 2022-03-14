@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:newsreader/core/constants/colorconstants.dart';
+import 'package:newsreader/models/applemodel.dart';
 import 'package:newsreader/routes/myroute.dart';
-import 'package:newsreader/screens/pages/home_page.dart';
-import 'package:newsreader/screens/settingsscreen/profile.dart';
-import 'package:newsreader/screens/tabbars/settings.dart';
-import 'package:newsreader/screens/settingsscreen/terms.dart';
-import 'package:newsreader/screens/signup/signup.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main(List<String> args) {
+void main(List<String> args) async {
+  await Hive.initFlutter();
+  Adapters.registeradapter();
+
+  await Hive.openBox<AppleModel>('applebox');
   runApp(const MyApp());
 }
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
               isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth),
       onGenerateRoute: MyRoute.onGenerateRoute,
       initialRoute: '/homepage',
-      
+
       // home:  MyHomePage()
     );
   }
