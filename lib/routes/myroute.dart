@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:newsreader/screens/pages/home_page.dart';
 import 'package:newsreader/screens/settingsscreen/about.dart';
@@ -23,7 +22,7 @@ class MyRoute {
                   isdark: (args as bool),
                 ));
       case '/homepage':
-        return MaterialPageRoute(builder: (context) => const MyHomePage());
+        return MaterialPageRoute(builder: (context) => MyHomePage());
       case '/terms':
         return MaterialPageRoute(
             builder: (context) => Terms.termspage(context, (args as bool)));
@@ -33,9 +32,11 @@ class MyRoute {
       case '/interests':
         return MaterialPageRoute(
             builder: (context) => InterestsPage(isdark: args as bool));
-            case '/notification':
+      case '/notification':
         return MaterialPageRoute(
-            builder: (context) => NotificationPage(isdark: (args as bool),));
+            builder: (context) => NotificationPage(
+                  isdark: (args as bool),
+                ));
     }
   }
 }

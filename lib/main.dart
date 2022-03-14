@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
               isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth),
       onGenerateRoute: MyRoute.onGenerateRoute,
       initialRoute: '/homepage',
+      
       // home:  MyHomePage()
     );
   }

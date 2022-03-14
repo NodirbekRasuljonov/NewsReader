@@ -1,31 +1,20 @@
 
-class News {
-    News({
+
+class AppleModel {
+    AppleModel({
         this.status,
-        this.totalHits,
-        this.page,
-        this.totalPages,
-        this.pageSize,
+        this.totalResults,
         this.articles,
-        this.userInput,
     });
 
     String? status;
-    int? totalHits;
-    int? page;
-    int? totalPages;
-    int? pageSize;
+    int? totalResults;
     List<Article>? articles;
-    UserInput? userInput;
 
-    factory News.fromJson(Map<String, dynamic> json) => News(
+    factory AppleModel.fromJson(Map<String, dynamic> json) => AppleModel(
         status: json["status"],
-        totalHits: json["total_hits"],
-        page: json["page"],
-        totalPages: json["total_pages"],
-        pageSize: json["page_size"],
+        totalResults: json["totalResults"],
         articles: List<Article>.from(json["articles"].map((x) => Article.fromJson(x))),
-        userInput: UserInput.fromJson(json["user_input"]),
     );
 
    
@@ -33,93 +22,52 @@ class News {
 
 class Article {
     Article({
-        this.title,
+        this.source,
         this.author,
-        this.publishedDate,
-        this.publishedDatePrecision,
-        this.link,
-        this.cleanUrl,
-        this.summary,
-        this.rights,
-        this.rank,
-        this.topic,
-        this.country,
-        this.language,
-        this.authors,
-        this.media,
-        this.isOpinion,
-        this.twitterAccount,
-        this.score,
-        this.id,
+        this.title,
+        this.description,
+        this.url,
+        this.urlToImage,
+        this.publishedAt,
+        this.content,
     });
 
+    Source? source;
+    String? author;
     String? title;
-    dynamic? author;
-    DateTime? publishedDate;
-    String? publishedDatePrecision;
-    String? link;
-    String? cleanUrl;
-    String? summary;
-    String? rights;
-    int? rank;
-    String? topic;
-    String? country;
-    String? language;
-    List<dynamic>? authors;
-    String? media;
-    bool? isOpinion;
-    String? twitterAccount;
-    double? score;
-    String? id;
+    String? description;
+    String? url;
+    String? urlToImage;
+    DateTime? publishedAt;
+    String? content;
 
     factory Article.fromJson(Map<String, dynamic> json) => Article(
+        source: Source.fromJson(json["source"]),
+        author: json["author"] == null ? null : json["author"],
         title: json["title"],
-        author: json["author"],
-        publishedDate: DateTime.parse(json["published_date"]),
-        publishedDatePrecision: json["published_date_precision"],
-        link: json["link"],
-        cleanUrl: json["clean_url"],
-        summary: json["summary"],
-        rights: json["rights"],
-        rank: json["rank"],
-        topic: json["topic"],
-        country: json["country"] == null ? null : json["country"],
-        language: json["language"],
-        authors: List<dynamic>.from(json["authors"].map((x) => x)),
-        media: json["media"],
-        isOpinion: json["is_opinion"],
-        twitterAccount: json["twitter_account"],
-        score: json["_score"].toDouble(),
-        id: json["_id"],
-    );
-
-}
-
-class UserInput {
-    UserInput({
-        this.q,
-        this.lang,
-        this.from,
-        this.sortBy,
-        this.page,
-        this.size,
-    });
-
-    String? q;
-    String? lang;
-    DateTime? from;
-    String? sortBy;
-    int? page;
-    int? size;
-
-    factory UserInput.fromJson(Map<String, dynamic> json) => UserInput(
-        q: json["q"],
-        lang: json["lang"],
-        from: DateTime.parse(json["from"]),
-        sortBy: json["sort_by"],
-        page: json["page"],
-        size: json["size"],
+        description: json["description"],
+        url: json["url"],
+        urlToImage: json["urlToImage"],
+        publishedAt: DateTime.parse(json["publishedAt"]),
+        content: json["content"],
     );
 
     
+}
+
+class Source {
+    Source({
+        this.id,
+        this.name,
+    });
+
+    String? id;
+    String? name;
+
+    factory Source.fromJson(Map<String, dynamic> json) => Source(
+        id: json["id"] == null ? null : json["id"],
+        name: json["name"],
+    );
+
+   
 }

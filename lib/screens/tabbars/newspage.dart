@@ -4,11 +4,11 @@ import 'package:newsreader/core/constants/colorconstants.dart';
 import 'package:newsreader/core/constants/myfonts.dart';
 import 'package:newsreader/core/constants/myradius.dart';
 import 'package:newsreader/models/newsmodel.dart';
-import 'package:newsreader/screens/tabbars/settings.dart';
 import 'package:newsreader/services/myservice.dart';
 
 class NewsPage extends StatefulWidget {
-  const NewsPage({Key? key}) : super(key: key);
+  bool isdark;
+  NewsPage({Key? key, required this.isdark}) : super(key: key);
 
   @override
   State<NewsPage> createState() => _NewsPageState();
@@ -39,7 +39,7 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
           Container(
               height: 200.0,
               width: double.infinity,
-              color: Colors.white,
+              color: widget.isdark ? ScaffoldColor.dark : ScaffoldColor.ligth,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -59,8 +59,9 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
               )),
           Expanded(
             child: FutureBuilder(
+                key: PageStorageKey('news'),
                 future: AppleService.getData(),
-                builder: (context, AsyncSnapshot<News> snapshot) {
+                builder: (context, AsyncSnapshot<AppleModel> snapshot) {
                   if (!snapshot.hasData) {
                     return const Center(
                       child: CircularProgressIndicator.adaptive(),
@@ -77,7 +78,7 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                         return InkWell(
                           onTap: () {},
                           child: Container(
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 238, 237, 237),
                             height: MediaQuery.of(context).size.height * 0.150,
                             width: double.infinity,
                             margin: const EdgeInsets.symmetric(
@@ -87,15 +88,15 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                               children: [
                                 Container(
                                   height: MediaQuery.of(context).size.height *
-                                      0.180,
+                                      0.195,
                                   width: MediaQuery.of(context).size.height *
-                                      0.150,
+                                      0.160,
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
                                           fit: BoxFit.cover,
                                           image: CachedNetworkImageProvider(
-                                              snapshot
-                                                  .data!.articles![index].media
+                                              snapshot.data!.articles![index]
+                                                  .urlToImage
                                                   .toString()))),
                                 ),
                                 SizedBox(
@@ -156,7 +157,7 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 5.0),
                                               child: Text(
-                                                  "${snapshot.data!.articles![index].publishedDate!.minute.toString()} m ago"),
+                                                  "${snapshot.data!.articles![index].publishedAt!.minute.toString()} m ago"),
                                             ),
                                             const SizedBox(
                                               width: 15.0,
