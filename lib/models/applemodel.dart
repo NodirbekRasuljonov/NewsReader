@@ -22,6 +22,7 @@ class AppleModel {
         articles: List<Article>.from(
             json["articles"].map((x) => Article.fromJson(x))),
       );
+
 }
 
 @HiveType(typeId: 2)

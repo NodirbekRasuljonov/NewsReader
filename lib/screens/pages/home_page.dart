@@ -39,10 +39,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         child: PageStorage(
           bucket: _bucket,
           child: TabBarView(
+            
             controller: _tabController,
             children: [
               NewsPage(isdark: MyApp.isDarkmode),
-              SearchPage(),
+              
+              
               Container(
                 key: PageStorageKey('book'),
                 height: MediaQuery.of(context).size.height * 0.2,
@@ -66,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               ),
             ),
             Tab(
+
               icon: Icon(
                 Icons.search,
                 color: Colors.black,

@@ -5,6 +5,7 @@ import 'package:newsreader/core/constants/colorconstants.dart';
 import 'package:newsreader/core/constants/myfonts.dart';
 import 'package:newsreader/core/constants/myradius.dart';
 import 'package:newsreader/models/applemodel.dart';
+import 'package:newsreader/screens/tabbars/searchpage.dart';
 import 'package:newsreader/services/myservice.dart';
 
 class NewsPage extends StatefulWidget {
@@ -46,6 +47,17 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  ElevatedButton.icon(
+                      onPressed: () {
+                        showSearch(
+                            context: context,
+                            delegate: SearchPage(
+                                data: AppleService.myData,
+                                data1: AppleService.myData),
+                            query: '');
+                      },
+                      icon: Icon(Icons.search),
+                      label: Text('search')),
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 5.0),
                     height: 35.0,
