@@ -114,22 +114,22 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                                       Container(
                                         margin: const EdgeInsets.symmetric(
                                             horizontal: 5.0),
-                                        alignment: Alignment.center,
+                                        alignment: Alignment.centerLeft,
                                         height: 100,
                                         width: double.infinity,
                                         child: Text(
                                           snapshot.data!.articles![index].title
                                               .toString(),
                                           style: TextStyle(
-                                              fontSize: MyFonts.small,
                                               color: HomePageColor.textcolor),
+                                          textAlign: TextAlign.start,
                                         ),
                                       ),
                                       Container(
                                         margin: const EdgeInsets.symmetric(
                                             horizontal: 5.0),
                                         alignment: Alignment.centerLeft,
-                                        height: 30.0,
+                                        height: 40.0,
                                         width: double.infinity,
                                         child: Row(
                                           mainAxisAlignment:
@@ -147,20 +147,21 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                                               ),
                                             ),
                                             Padding(
-                                                padding: const EdgeInsets.symmetric(
-                                                    horizontal: 3.0),
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    savedbox.add(snapshot
-                                                        .data.articles[index]);
-                                                    print('added');
-                                                    setState(() {});
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 3.0),
+                                              child: IconButton(
+                                                  onPressed: () {
+                                                    if (!savedbox.containsKey(
+                                                        snapshot.data
+                                                            .articles[index])) {
+                                                      savedbox.add(snapshot.data
+                                                          .articles[index]);
+                                                    }
                                                   },
-                                                  child: const Icon(
-                                                    Icons.bookmark_outline,
-                                                    color: Colors.black,
-                                                  ),
-                                                ))
+                                                  icon: Icon(
+                                                      Icons.bookmark_border)),
+                                            )
                                           ],
                                         ),
                                       ),

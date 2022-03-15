@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     _tabController = TabController(length: 4, vsync: this);
   }
 
-  
+  Box<Article> savedbox = Hive.box('savedmassage');
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             children: [
               NewsPage(isdark: MyApp.isDarkmode),
               SearchPage(),
-              SavedMassage(),
+              SavedMassage(saved: savedbox),
               SettingsPage()
             ],
           ),
