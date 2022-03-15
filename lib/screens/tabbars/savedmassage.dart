@@ -19,7 +19,7 @@ class _SavedMassageState extends State<SavedMassage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        title: Text(
+        title: const Text(
           'Bookmarked',
           style: TextStyle(color: Colors.black),
         ),
