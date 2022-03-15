@@ -5,7 +5,6 @@ import 'package:newsreader/core/constants/colorconstants.dart';
 import 'package:newsreader/core/constants/myfonts.dart';
 import 'package:newsreader/core/constants/myradius.dart';
 import 'package:newsreader/models/applemodel.dart';
-import 'package:newsreader/screens/tabbars/searchpage.dart';
 import 'package:newsreader/services/myservice.dart';
 
 class NewsPage extends StatefulWidget {
@@ -33,33 +32,24 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
   ];
   int currentindex = 0;
 
-  Box applebox = Hive.box<AppleModel>('applebox');
+  Box<AppleModel> applebox = Hive.box<AppleModel>('applebox');
+  Box<Article> savedbox = Hive.box('savedmassage');
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      key: PageStorageKey('news'),
+    return SizedBox(
+      key: const PageStorageKey('news'),
       child: Column(
         children: [
           Container(
-              height: 200.0,
+              height: MediaQuery.of(context).size.height * 0.200,
               width: double.infinity,
               color: widget.isdark ? ScaffoldColor.dark : ScaffoldColor.ligth,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  ElevatedButton.icon(
-                      onPressed: () {
-                        showSearch(
-                            context: context,
-                            delegate: SearchPage(
-                                data: AppleService.myData,
-                                data1: AppleService.myData),
-                            query: '');
-                      },
-                      icon: Icon(Icons.search),
-                      label: Text('search')),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 5.0),
+                    margin: const EdgeInsets.symmetric(vertical: 5.0),
                     height: 35.0,
                     width: double.infinity,
                     child: ListView.builder(
@@ -74,11 +64,11 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
               )),
           Expanded(
             child: FutureBuilder(
-                key: PageStorageKey('news'),
+                key: const PageStorageKey('news'),
                 future: AppleService.getData(),
                 builder: (context, AsyncSnapshot snapshot) {
                   if (!snapshot.hasData) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (snapshot.hasError) {
@@ -88,12 +78,12 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                   } else {
                     return ListView.builder(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      itemExtent: 200.0,
+                      itemExtent: MediaQuery.of(context).size.height * 0.235,
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {},
                           child: Container(
-                            color: Color.fromARGB(255, 238, 237, 237),
+                            color: const Color.fromARGB(255, 238, 237, 237),
                             height: MediaQuery.of(context).size.height * 0.150,
                             width: double.infinity,
                             margin: const EdgeInsets.symmetric(
@@ -136,19 +126,44 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Container(
-                                          margin: const EdgeInsets.symmetric(
-                                              horizontal: 5.0),
-                                          alignment: Alignment.centerLeft,
-                                          height: 30.0,
-                                          width: double.infinity,
-                                          child: Text(
-                                            snapshot
-                                                .data!.articles![index].author
-                                                .toString(),
-                                            style: TextStyle(
-                                                color:
-                                                    HomePageColor.textcolor2),
-                                          )),
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 5.0),
+                                        alignment: Alignment.centerLeft,
+                                        height: 30.0,
+                                        width: double.infinity,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SizedBox(
+                                              width: 100.0,
+                                              child: Text(
+                                                snapshot.data!.articles![index]
+                                                    .author
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    color: HomePageColor
+                                                        .textcolor2),
+                                              ),
+                                            ),
+                                            Padding(
+                                                padding: const EdgeInsets.symmetric(
+                                                    horizontal: 3.0),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    savedbox.add(snapshot
+                                                        .data.articles[index]);
+                                                    print('added');
+                                                    setState(() {});
+                                                  },
+                                                  child: const Icon(
+                                                    Icons.bookmark_outline,
+                                                    color: Colors.black,
+                                                  ),
+                                                ))
+                                          ],
+                                        ),
+                                      ),
                                       SizedBox(
                                         height: 30.0,
                                         width: double.infinity,

@@ -3,11 +3,9 @@ import 'package:newsreader/core/constants/myapi.dart';
 import 'package:newsreader/models/applemodel.dart';
 
 class AppleService {
-  static List<AppleModel> myData=[];
-  static Future<List<AppleModel>> getData() async {
+  static Future getData() async {
     Response res = await Dio().get(AppleAPI.api);
-    myData.add(res.data);
-    return myData;
+    return AppleModel.fromJson(res.data);
   }
 }
 

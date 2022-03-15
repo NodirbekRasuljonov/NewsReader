@@ -13,30 +13,46 @@ class MyRoute {
     var args = s.arguments;
     switch (s.name) {
       case '/splashscreen':
-        return MaterialPageRoute(builder: (context) => const SplashScreen());
+        return MaterialPageRoute(
+          builder: (context) => const SplashScreen(),
+        );
       case '/signup':
-        return MaterialPageRoute(builder: (context) => const SignUpPage());
+        return MaterialPageRoute(
+          builder: (context) => const SignUpPage(),
+        );
       case '/profile':
         return MaterialPageRoute(
             builder: (context) => ProfilePage(
                   isdark: (args as bool),
                 ));
       case '/homepage':
-        return MaterialPageRoute(builder: (context) => MyHomePage());
+        return MaterialPageRoute(
+          builder: (context) => MyHomePage(),
+        );
       case '/terms':
         return MaterialPageRoute(
-            builder: (context) => Terms.termspage(context, (args as bool)));
+          builder: (context) => Terms.termspage(
+            context,
+            (args as bool),
+          ),
+        );
       case '/about':
         return MaterialPageRoute(
-            builder: (context) => About.aboutpage(context, (args as bool)));
+          builder: (context) => About.aboutpage(
+            context,
+            (args as bool),
+          ),
+        );
       case '/interests':
         return MaterialPageRoute(
-            builder: (context) => InterestsPage(isdark: args as bool));
+          builder: (context) => InterestsPage(isdark: args as bool),
+        );
       case '/notification':
         return MaterialPageRoute(
-            builder: (context) => NotificationPage(
-                  isdark: (args as bool),
-                ));
+          builder: (context) => NotificationPage(
+            isdark: (args as bool),
+          ),
+        );
     }
   }
 }

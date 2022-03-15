@@ -1,18 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hive/hive.dart';
 import 'package:newsreader/core/constants/colorconstants.dart';
 import 'package:newsreader/core/constants/myfonts.dart';
 import 'package:newsreader/main.dart';
 import 'package:newsreader/screens/tabbars/newspage.dart';
 import 'package:newsreader/models/applemodel.dart';
+import 'package:newsreader/screens/tabbars/savedmassage.dart';
 import 'package:newsreader/screens/tabbars/searchpage.dart';
 import 'package:newsreader/screens/tabbars/settings.dart';
 import 'package:newsreader/services/myservice.dart';
 
 class MyHomePage extends StatefulWidget {
-  
-  MyHomePage({Key? key,}) : super(key: key);
+  MyHomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -22,6 +25,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   TabController? _tabController;
 
   final PageStorageBucket _bucket = PageStorageBucket();
+  bool saved = true;
 
   @override
   void initState() {
@@ -30,27 +34,21 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     _tabController = TabController(length: 4, vsync: this);
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SafeArea(
           child: Container(
         child: PageStorage(
           bucket: _bucket,
           child: TabBarView(
-            
             controller: _tabController,
             children: [
               NewsPage(isdark: MyApp.isDarkmode),
-              
-              
-              Container(
-                key: PageStorageKey('book'),
-                height: MediaQuery.of(context).size.height * 0.2,
-                width: MediaQuery.of(context).size.height,
-                color: Colors.red,
-              ),
+              SearchPage(),
+              SavedMassage(),
               SettingsPage()
             ],
           ),
@@ -58,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       )),
       bottomNavigationBar: TabBar(
           physics: NeverScrollableScrollPhysics(),
-          indicatorColor: SettingsPageColor.trailingcolor,
+          indicatorColor: Color.fromARGB(255, 114, 9, 9),
           controller: _tabController,
           tabs: const [
             Tab(
@@ -68,7 +66,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               ),
             ),
             Tab(
-
               icon: Icon(
                 Icons.search,
                 color: Colors.black,

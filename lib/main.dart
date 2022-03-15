@@ -9,6 +9,7 @@ void main(List<String> args) async {
   Adapters.registeradapter();
 
   await Hive.openBox<AppleModel>('applebox');
+  await Hive.openBox<Article>('savedmassage');
   runApp(const MyApp());
 }
 
