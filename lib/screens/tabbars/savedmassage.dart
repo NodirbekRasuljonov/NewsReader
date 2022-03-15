@@ -31,7 +31,7 @@ class _SavedMassageState extends State<SavedMassage> {
               onTap: () {},
               child: Container(
                 color: const Color.fromARGB(255, 238, 237, 237),
-                height: MediaQuery.of(context).size.height * 0.200,
+                height: MediaQuery.of(context).size.height * 0.220,
                 width: double.infinity,
                 margin: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 10.0),
@@ -83,6 +83,17 @@ class _SavedMassageState extends State<SavedMassage> {
                                         .toString(),
                                     style: TextStyle(
                                         color: HomePageColor.textcolor2),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 5.0),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      widget.saved.deleteAt(index);
+                                      setState(() {});
+                                    },
+                                    icon: Icon(Icons.delete),
                                   ),
                                 ),
                               ],
@@ -140,7 +151,7 @@ class _SavedMassageState extends State<SavedMassage> {
                                 ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     )

@@ -78,7 +78,7 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                   } else {
                     return ListView.builder(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      itemExtent: MediaQuery.of(context).size.height * 0.235,
+                      itemExtent: MediaQuery.of(context).size.height * 0.245,
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {},
