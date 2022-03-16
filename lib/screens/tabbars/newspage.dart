@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:newsreader/core/constants/colorconstants.dart';
-import 'package:newsreader/core/constants/myfonts.dart';
 import 'package:newsreader/core/constants/myradius.dart';
 import 'package:newsreader/models/applemodel.dart';
 import 'package:newsreader/services/myservice.dart';
@@ -81,7 +80,10 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                       itemExtent: MediaQuery.of(context).size.height * 0.245,
                       itemBuilder: (context, index) {
                         return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, '/indi',
+                                arguments: snapshot.data.articles[index]);
+                          },
                           child: Container(
                             color: const Color.fromARGB(255, 238, 237, 237),
                             height: MediaQuery.of(context).size.height * 0.150,

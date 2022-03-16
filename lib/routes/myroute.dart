@@ -1,4 +1,8 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:newsreader/individual/individualpage.dart';
+import 'package:newsreader/models/applemodel.dart';
 import 'package:newsreader/screens/pages/home_page.dart';
 import 'package:newsreader/screens/settingsscreen/about.dart';
 import 'package:newsreader/screens/settingsscreen/interests.dart';
@@ -52,6 +56,10 @@ class MyRoute {
           builder: (context) => NotificationPage(
             isdark: (args as bool),
           ),
+        );
+      case '/indi':
+        return MaterialPageRoute(
+          builder: (context) => IndividualPage(news: args as Article),
         );
     }
   }

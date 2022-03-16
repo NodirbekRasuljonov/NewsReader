@@ -37,3 +37,7 @@ class NewsPageColor {
 class SearchPageColor {
   static Color containercolor = Color.fromARGB(255, 240, 231, 231);
 }
+
+class IndividualPageColor {
+  static Color iconColor = Colors.black;
+}

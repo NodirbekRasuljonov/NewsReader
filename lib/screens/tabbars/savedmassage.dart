@@ -28,7 +28,10 @@ class _SavedMassageState extends State<SavedMassage> {
         child: ListView.builder(
           itemBuilder: (context, index) {
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/indi',
+                    arguments: widget.saved.getAt(index));
+              },
               child: Container(
                 color: const Color.fromARGB(255, 238, 237, 237),
                 height: MediaQuery.of(context).size.height * 0.220,
