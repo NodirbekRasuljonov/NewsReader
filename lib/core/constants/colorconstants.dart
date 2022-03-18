@@ -14,6 +14,7 @@ class SplashScreenColor {
 
 class SignUpPageColor {
   static Color textformfieldcolor = Color(0xff909090);
+  static Color iconColor = Colors.black;
 }
 
 class HomePageColor {

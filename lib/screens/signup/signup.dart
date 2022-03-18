@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:newsreader/core/constants/colorconstants.dart';
+import 'package:newsreader/core/constants/iconsize.dart';
 import 'package:newsreader/core/constants/myfonts.dart';
+import 'package:newsreader/core/constants/myradius.dart';
+import 'package:newsreader/main.dart';
+import 'package:on_click/extensions/click_extension.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -54,24 +58,43 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 )),
             Positioned(
-                top: MediaQuery.of(context).size.height * 0.250,
-                left: MediaQuery.of(context).size.height * 0.046,
-                right: MediaQuery.of(context).size.height * 0.046,
-                child: Container(
-                  alignment: Alignment.center,
-                  height: MediaQuery.of(context).size.height * 0.304,
-                  child: Form(
-                    key: _formkey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
+              top: MediaQuery.of(context).size.height * 0.250,
+              left: MediaQuery.of(context).size.height * 0.046,
+              right: MediaQuery.of(context).size.height * 0.046,
+              child: Container(
+                alignment: Alignment.center,
+                height: MediaQuery.of(context).size.height * 0.304,
+                child: Form(
+                  key: _formkey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.088,
+                        child: TextFormField(
+                          style: TextStyle(
+                              color: SignUpPageColor.textformfieldcolor),
+                          decoration: InputDecoration(
+                              hintText: 'Username',
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color:
+                                          SignUpPageColor.textformfieldcolor)),
+                              border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color:
+                                          SignUpPageColor.textformfieldcolor))),
+                          cursorColor: SignUpPageColor.textformfieldcolor,
+                          controller: _usernamcontroller,
+                        ),
+                      ),
+                      SizedBox(
                           height: MediaQuery.of(context).size.height * 0.088,
                           child: TextFormField(
                             style: TextStyle(
                                 color: SignUpPageColor.textformfieldcolor),
                             decoration: InputDecoration(
-                                hintText: 'Username',
+                                hintText: 'Email',
                                 focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                         color: SignUpPageColor
@@ -81,233 +104,146 @@ class _SignUpPageState extends State<SignUpPage> {
                                         color: SignUpPageColor
                                             .textformfieldcolor))),
                             cursorColor: SignUpPageColor.textformfieldcolor,
-                            controller: _usernamcontroller,
-                          ),
+                            controller: _emailcontroller,
+                            validator: (text) {
+                              if (text!.length < 5) {
+                                return 'Email notogri';
+                              }
+                              return null;
+                            },
+                          )),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.088,
+                        child: TextFormField(
+                          obscureText: _isSecure,
+                          style: TextStyle(
+                              color: SignUpPageColor.textformfieldcolor),
+                          decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                  color: SignUpPageColor.textformfieldcolor,
+                                  onPressed: () {
+                                    _isSecure = !_isSecure;
+                                    setState(() {});
+                                  },
+                                  icon: _isSecure
+                                      ? const Icon(Icons.visibility_off)
+                                      : const Icon(Icons.visibility)),
+                              hintText: 'Password',
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color:
+                                          SignUpPageColor.textformfieldcolor)),
+                              border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color:
+                                          SignUpPageColor.textformfieldcolor))),
+                          cursorColor: SignUpPageColor.textformfieldcolor,
+                          controller: _passwordcontroller,
+                          validator: (text) {
+                            if (text!.length < 5) {
+                              return 'Password must be at least 8 characters';
+                            }
+                          },
                         ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.088,
-                            child: TextFormField(
-                              style: TextStyle(
-                                  color: SignUpPageColor.textformfieldcolor),
-                              decoration: InputDecoration(
-                                  hintText: 'Email',
-                                  focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: SignUpPageColor
-                                              .textformfieldcolor)),
-                                  border: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: SignUpPageColor
-                                              .textformfieldcolor))),
-                              cursorColor: SignUpPageColor.textformfieldcolor,
-                              controller: _emailcontroller,
-                              validator: (text) {
-                                if (text!.length < 5) {
-                                  return 'Email notogri';
-                                }
-                                return null;
-                              },
-                            )),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.088,
-                            child: TextFormField(
-                              obscureText: _isSecure,
-                              style: TextStyle(
-                                  color: SignUpPageColor.textformfieldcolor),
-                              decoration: InputDecoration(
-                                  suffixIcon: IconButton(
-                                      color: SignUpPageColor.textformfieldcolor,
-                                      onPressed: () {
-                                        _isSecure = !_isSecure;
-                                        setState(() {});
-                                      },
-                                      icon: _isSecure
-                                          ? const Icon(Icons.visibility_off)
-                                          : const Icon(Icons.visibility)),
-                                  hintText: 'Password',
-                                  focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: SignUpPageColor
-                                              .textformfieldcolor)),
-                                  border: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: SignUpPageColor
-                                              .textformfieldcolor))),
-                              cursorColor: SignUpPageColor.textformfieldcolor,
-                              controller: _passwordcontroller,
-                              validator: (text) {
-                                if (text!.length < 5) {
-                                  return 'Password must be at least 8 characters';
-                                }
-                              },
-                            )),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 136.0,
+              left: MediaQuery.of(context).size.height * 0.01,
+              right: MediaQuery.of(context).size.height * 0.01,
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.075,
+                width: 300,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      loginOptions(context,
+                          iconData: Icon(
+                            Icons.email_outlined,
+                            size: MyIconSize.large,
+                            color: SignUpPageColor.iconColor,
+                          )),
+                      loginOptions(
+                        context,
+                        iconData: Text(
+                          'G',
+                          style: TextStyle(
+                              color: SignUpPageColor.iconColor,
+                              fontSize: MyIconSize.large),
+                        ),
+                      ),
+                      loginOptions(
+                        context,
+                        iconData: Text(
+                          'f',
+                          style: TextStyle(
+                              color: SignUpPageColor.iconColor,
+                              fontSize: MyIconSize.large),
+                        ),
+                      ),
+                      loginOptions(
+                        context,
+                        iconData: Text(
+                          't',
+                          style: TextStyle(
+                              color: SignUpPageColor.iconColor,
+                              fontSize: MyIconSize.large),
+                        ),
+                      ),
+                      loginOptions(
+                        context,
+                        iconData: Icon(
+                          Icons.apple_outlined,
+                          color: SignUpPageColor.iconColor,
+                          size: MyIconSize.large,
+                        ),
+                      ),
+                    ]),
+              ),
+            ),
+            Positioned(
+                bottom: 50,
+                left: 30.0,
+                right: 30.0,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      'By singing up to News24 you are accepting out',
+                      style: TextStyle(color: SignUpPageColor.iconColor),
+                    ),
+                    Text(
+                      'Terms & Conditions',
+                      style: TextStyle(
+                          color: SignUpPageColor.iconColor,
+                          fontSize: MyFonts.medium,
+                          fontWeight: FontWeight.bold),
+                    ).onClick(() {
+                      Navigator.pushNamed(context, '/terms',
+                          arguments: MyApp.isDarkmode);
+                    })
+                  ],
                 ))
           ],
         ),
       ),
     );
   }
-}
 
-/**
- * if (!snapshot.hasData) {
-                          return const Center(
-                            child: CircularProgressIndicator.adaptive(),
-                          );
-                        } else if (snapshot.hasError) {
-                          return const Center(
-                            child: Text('Please check your Network'),
-                          );
-                        } else {
-                          return ListView.builder(
-                            padding: const EdgeInsets.symmetric(vertical: 10.0),
-                            itemExtent: 200.0,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  color: Colors.white,
-                                  height: MediaQuery.of(context).size.height *
-                                      0.150,
-                                  width: double.infinity,
-                                  margin: const EdgeInsets.symmetric(
-                                      vertical: 10.0, horizontal: 10.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.180,
-                                        width:
-                                            MediaQuery.of(context).size.height *
-                                                0.150,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image:
-                                                    CachedNetworkImageProvider(
-                                                        snapshot
-                                                            .data!
-                                                            .articles![index]
-                                                            .media
-                                                            .toString()))),
-                                      ),
-                                      SizedBox(
-                                        height: 180,
-                                        width: 240,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Container(
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5.0),
-                                              alignment: Alignment.center,
-                                              height: 100,
-                                              width: double.infinity,
-                                              child: Text(
-                                                snapshot.data!.articles![index]
-                                                    .title
-                                                    .toString(),
-                                                style: TextStyle(
-                                                    fontSize: MyFonts.small,
-                                                    color: HomePageColor
-                                                        .textcolor),
-                                              ),
-                                            ),
-                                            Container(
-                                                margin:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 5.0),
-                                                alignment: Alignment.centerLeft,
-                                                height: 30.0,
-                                                width: double.infinity,
-                                                child: Text(
-                                                  snapshot.data!
-                                                      .articles![index].author
-                                                      .toString(),
-                                                  style: TextStyle(
-                                                      color: HomePageColor
-                                                          .textcolor2),
-                                                )),
-                                            SizedBox(
-                                              height: 30.0,
-                                              width: double.infinity,
-                                              child: Row(
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () {},
-                                                    child: const Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 5.0),
-                                                      child:
-                                                          Text('Entertainment'),
-                                                    ),
-                                                  ),
-                                                  CircleAvatar(
-                                                    radius: 5.0,
-                                                    backgroundColor:
-                                                        HomePageColor
-                                                            .textcolor2,
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 5.0),
-                                                    child: Text(
-                                                        "${snapshot.data!.articles![index].publishedDate!.minute.toString()} m ago"),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 15.0,
-                                                  ),
-                                                  const Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 3.0),
-                                                    child: CircleAvatar(
-                                                      radius: 1.0,
-                                                      backgroundColor:
-                                                          Colors.black,
-                                                    ),
-                                                  ),
-                                                  const Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 3.0),
-                                                    child: CircleAvatar(
-                                                      radius: 1.0,
-                                                      backgroundColor:
-                                                          Colors.black,
-                                                    ),
-                                                  ),
-                                                  const Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 3.0),
-                                                    child: CircleAvatar(
-                                                      radius: 1.0,
-                                                      backgroundColor:
-                                                          Colors.black,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                            itemCount: snapshot.data!.articles!.length,
-                          );
- */
+  Container loginOptions(BuildContext context, {required Widget iconData}) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.9,
+      width: MediaQuery.of(context).size.height * 0.08,
+      alignment: Alignment.center,
+      child: iconData,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.black),
+          borderRadius: BorderRadius.circular(MyRadius.extrasmall)),
+    );
+  }
+}
