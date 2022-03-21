@@ -5,18 +5,19 @@ import 'package:newsreader/core/constants/iconsize.dart';
 import 'package:newsreader/core/constants/myfonts.dart';
 import 'package:newsreader/core/constants/myradius.dart';
 import 'package:newsreader/main.dart';
+import 'package:newsreader/screens/tabbars/settings.dart';
 import 'package:on_click/extensions/click_extension.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+class GmailPage extends StatefulWidget {
+  const GmailPage({Key? key}) : super(key: key);
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<GmailPage> createState() => _GmailPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _GmailPageState extends State<GmailPage> {
   bool _isSecure = true;
-  bool istapped = false;
+  bool iconcolor = true;
   final _formkey = GlobalKey<FormState>();
 
   final TextEditingController _usernamcontroller = TextEditingController();
@@ -73,10 +74,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.088,
                         child: TextFormField(
-                          onTap: () {
-                            istapped = !istapped;
-                            setState(() {});
-                          },
                           style: TextStyle(
                               color: SignUpPageColor.textformfieldcolor),
                           decoration: InputDecoration(
@@ -157,6 +154,17 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             Positioned(
+                left: MediaQuery.of(context).size.height * 0.355,
+                top: MediaQuery.of(context).size.height * 0.52,
+                child: Text(
+                  'Forget password',
+                  style: TextStyle(
+                      color: SignUpPageColor.iconColor,
+                      fontWeight: FontWeight.bold),
+                ).onClick(() {
+                  Navigator.pushNamed(context, '/password');
+                })),
+            Positioned(
                 top: MediaQuery.of(context).size.height * 0.6,
                 left: MediaQuery.of(context).size.height * 0.12,
                 right: MediaQuery.of(context).size.height * 0.12,
@@ -164,9 +172,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: MediaQuery.of(context).size.height * 0.08,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(MyRadius.medium),
-                      color: istapped
-                          ? SignUpPageColor.iconColor
-                          : SignUpPageColor.containercolor),
+                      color: SignUpPageColor.iconColor),
                   alignment: Alignment.center,
                   child: Text(
                     'Sign Up',
@@ -176,11 +182,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         fontSize: MyFonts.medium),
                   ),
                 ).onClick(() {
-                  Navigator.pushNamed(context, '/signinter',
-                      arguments: MyApp.isDarkmode);
+                  Navigator.pushNamed(context, '/homepage');
                 })),
             Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.18,
+              bottom: 136.0,
               left: MediaQuery.of(context).size.height * 0.01,
               right: MediaQuery.of(context).size.height * 0.01,
               child: SizedBox(
@@ -189,13 +194,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      loginOptions(context,
-                          iconData: Icon(
-                            Icons.email_outlined,
-                            size: MyIconSize.large,
-                            color: SignUpPageColor.iconColor,
-                          ),
-                          route: '/gmail'),
                       loginOptions(context,
                           iconData: Text(
                             'G',
@@ -248,7 +246,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           fontSize: MyFonts.medium,
                           fontWeight: FontWeight.bold),
                     ).onClick(() {
-                      Navigator.pushReplacementNamed(context, '/terms',
+                      Navigator.pushNamed(context, '/terms',
                           arguments: MyApp.isDarkmode);
                     })
                   ],

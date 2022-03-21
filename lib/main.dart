@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor:
               isDarkmode ? ScaffoldColor.dark : ScaffoldColor.ligth),
       onGenerateRoute: MyRoute.onGenerateRoute,
-      initialRoute: '/splashscreen',
+      initialRoute: '/homepage',
 
       // home:  MyHomePage()
     );

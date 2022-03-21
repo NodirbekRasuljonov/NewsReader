@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   Box<Article> savedbox = Hive.box('savedmassage');
@@ -47,7 +47,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             controller: _tabController,
             children: [
               NewsPage(isdark: MyApp.isDarkmode),
-              SearchPage(),
               SavedMassage(saved: savedbox),
               SettingsPage()
             ],
@@ -67,12 +66,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             ),
             Tab(
               icon: Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
-            ),
-            Tab(
-              icon: Icon(
                 Icons.bookmark_border,
                 color: Colors.black,
               ),
@@ -87,28 +80,3 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     );
   }
 }
-
-
-/**
- * TabBarView(
-                  controller: _tabController,
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: 300,
-                      color: Colors.red,
-                    ),
-                    Container(
-                      color: Colors.yellow,
-                      height: MediaQuery.of(context).size.height * 0.7,
-                      width: double.infinity,
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.height,
-                      color: Colors.red,
-                    ),
-                    SettingsPage()
-                  ],
-                ),
- */

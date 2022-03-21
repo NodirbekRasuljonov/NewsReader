@@ -1,4 +1,4 @@
-# newsreader
+~# newsreader
 
 A new Flutter project.
 

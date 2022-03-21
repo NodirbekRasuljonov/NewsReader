@@ -4,14 +4,13 @@ import 'package:newsreader/core/constants/colorconstants.dart';
 class Terms {
   static Scaffold termspage(BuildContext context, bool isdark) {
     return Scaffold(
-      
       backgroundColor: isdark ? ScaffoldColor.dark : ScaffoldColor.ligth,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         leading: InkWell(
           onTap: () {
-            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, '/signup');
           },
           child: Icon(
             Icons.chevron_left,
